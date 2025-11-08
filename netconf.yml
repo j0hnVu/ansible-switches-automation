@@ -1,0 +1,8 @@
+---
+- name: Get Allied Telesis facts
+  hosts: alliedtelesis
+  gather_facts: false
+  become: true
+  become_method: enable
+  roles:
+    - role: alliedtelesis_awplus_netconf

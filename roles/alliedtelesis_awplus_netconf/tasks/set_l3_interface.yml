@@ -1,0 +1,6 @@
+- name: set l3_interfaces
+  alliedtelesis.awplus.awplus_l3_interfaces:
+    config: "{{ l3_interfaces }}" 
+    state: merged
+  when: l3_interfaces is defined
+  notify: "save config alliedtelesis"

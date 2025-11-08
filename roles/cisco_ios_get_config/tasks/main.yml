@@ -1,0 +1,5 @@
+- name: get run conf
+  include_tasks: get_running_config.yml
+
+- name: get facts
+  include_tasks: get_facts.yml

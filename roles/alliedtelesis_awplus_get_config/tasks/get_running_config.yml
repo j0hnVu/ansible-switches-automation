@@ -1,0 +1,32 @@
+- name: Set timestamp fact
+  ansible.builtin.set_fact:
+    backup_timestamp: "{{ now(fmt='%Y-%m-%d_%H-%M-%S') }}"
+  run_once: true
+
+- name: Ensure destination directory exists on the control node
+  ansible.builtin.file:
+    path: "./configs/{{ inventory_hostname }}/backup/"
+    state: directory
+    mode: '0755'
+  delegate_to: localhost
+
+- name: Write running configuration to a file on the Ansible control node
+  alliedtelesis.awplus.awplus_config:
+    backup: true
+    backup_options:
+      dir_path: "./configs/{{ inventory_hostname }}/backup/"
+      filename: "config_{{ backup_timestamp }}"
+
+- name: Find the created backup file
+  ansible.builtin.find:
+    paths: "./configs/{{ inventory_hostname }}/backup/"
+    patterns: "config_{{ backup_timestamp }}*"
+  delegate_to: localhost
+  register: latest_file
+
+- name: Copy latest as running config
+  ansible.builtin.copy:
+    src: "{{ latest_file.files[0].path }}"
+    dest: "./configs/{{ inventory_hostname }}/running_config"
+    remote_src: yes
+  delegate_to: localhost

@@ -1,0 +1,19 @@
+- name: Capture running configuration from AWPlus device
+  alliedtelesis.awplus.awplus_command:
+    commands:
+      - show running-config
+  register: running_config
+
+- name: Ensure destination directory exists on the control node
+  ansible.builtin.file:
+    path: "./configs/{{ inventory_hostname }}"
+    state: directory
+    mode: '0755'
+  delegate_to: localhost
+  run_once: true
+
+- name: Write running configuration to a file on the Ansible control node
+  ansible.builtin.copy:
+    content: "{{ running_config.stdout[0] }}"
+    dest: "./configs/{{ inventory_hostname }}/config_{{ now(fmt='%Y-%m-%d_%H-%M-%S') }}.cfg"
+  delegate_to: localhost

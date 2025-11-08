@@ -1,0 +1,5 @@
+- name: configure hostname
+  alliedtelesis.awplus.awplus_system:
+    hostname: "{{ hostname }}"
+  when: hostname is defined
+  notify: "save config alliedtelesis"

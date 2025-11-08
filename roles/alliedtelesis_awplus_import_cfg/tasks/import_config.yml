@@ -1,0 +1,6 @@
+- name: Apply entire configuration block from file
+  alliedtelesis.awplus.awplus_config:
+    #lines: "{{ lookup('file', config).splitlines() }}"
+    src: "{{ config }}"
+    #replace: block
+  notify: "save config alliedtelesis"

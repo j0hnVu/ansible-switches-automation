@@ -1,0 +1,5 @@
+- name: set nameservers
+  alliedtelesis.awplus.awplus_system:
+    name_servers: "{{ nameservers }}"
+  when: nameservers is defined
+  notify: "save config alliedtelesis"

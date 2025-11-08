@@ -1,0 +1,16 @@
+- name: set global lacp settings
+  alliedtelesis.awplus.awplus_lacp:
+    config:
+      system:
+        priority: "{{ lacp.priority }}"
+    state: merged
+  notify: "save config alliedtelesis"
+
+- name: set laginterfaces
+  alliedtelesis.awplus.awplus_lag_interfaces:
+    config: "{{ lacp.interface }}"
+    state: merged
+  notify: "save config alliedtelesis"
+
+
+

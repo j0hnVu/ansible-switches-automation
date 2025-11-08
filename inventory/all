@@ -1,0 +1,20 @@
+[switch:children]
+cisco
+alliedtelesis
+
+[alliedtelesis]
+SOME_ACCESS_SWITCH ansible_user=username ansible_password=password
+SOME_SERVER_SWITCH ansible_user=username ansible_password=password
+
+[alliedtelesis:vars]
+ansible_network_os=alliedtelesis.awplus.awplus
+ansible_connection=ansible.netcommon.network_cli
+
+[cisco]
+cisco_switch1 ansible_user=user ansible_password=password
+cisco_switch2 ansible_user=user ansible_password=password
+
+[cisco:vars]
+ansible_network_os=cisco.ios.ios
+ansible_connection=ansible.netcommon.network_cli
+

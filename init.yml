@@ -1,0 +1,8 @@
+---
+- name: Configure Allied Telesis Switches
+  hosts: TEST
+  gather_facts: false
+  become: true
+  become_method: enable
+  roles:
+    - role: alliedtelesis_awplus_init

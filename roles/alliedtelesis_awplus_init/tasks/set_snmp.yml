@@ -1,0 +1,13 @@
+- name: set snmp server
+  alliedtelesis.awplus.awplus_config:
+    lines:
+      - "snmp-server"
+  when: snmp == true
+  notify: "save config alliedtelesis"
+
+- name: disable snmp server
+  alliedtelesis.awplus.awplus_config:
+    lines:
+      - "no snmp-server"
+  when: snmp == false
+  notify: "save config alliedtelesis"

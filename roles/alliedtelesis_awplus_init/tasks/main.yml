@@ -1,0 +1,65 @@
+---
+- name: Install passlib via pip
+  ansible.builtin.pip:
+    name: 
+    - passlib # set_user.yml
+    - paramiko
+    state: present
+  delegate_to: localhost
+  run_once: true
+
+# set_hostname.yml
+- name: Set device hostname
+  include_tasks: set_hostname.yml
+
+# set_banner.yml
+- name: Set device banner
+  include_tasks: set_banner.yml
+
+# set_snmp.yml
+- name: set snmp
+  include_tasks: set_snmp.yml
+
+# set_jumboframe.yml
+- name: set jumboframe
+  include_tasks: set_jumboframe.yml
+  when: jumboframe is defined
+
+# set_domainname.yml
+- name: Set domainname
+  include_tasks: set_domainname.yml
+
+# set_nameserver.yml
+- name: Set nameserver
+  include_tasks: set_nameserver.yml
+
+# set_ntp.yml
+- name: Set NTP Servers
+  include_tasks: set_ntp.yml
+
+# set_timezone.yml
+- name: Set timezone
+  include_tasks: set_timezone.yml
+
+# set_syslog.yml
+- name: Set timezone
+  include_tasks: set_syslog.yml
+
+# set_service.yml
+- name: Set service
+  include_tasks: set_service.yml
+
+# set_user.yml
+- name: Set user
+  include_tasks: set_user.yml
+
+# set_ssh_allowed_users.yml
+- name: Set ssh_allowed_users
+  include_tasks: set_ssh_allowed_users.yml
+
+- name: vlan
+  include_tasks: set_vlan.yml
+
+# alliedtelesis_awplus_get_facts role
+#- name: get current run conf
+#  include_role: alliedtelesis_awplus_get_facts

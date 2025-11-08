@@ -1,0 +1,7 @@
+- name: Configure NTP servers using the awplus_ntp module
+  alliedtelesis.awplus.awplus_ntp:
+    config:
+      server: "{{ ntp_servers }}"
+    state: merged
+  when: ntp_servers is defined and ntp_servers | length > 0
+  notify: "save config alliedtelesis"

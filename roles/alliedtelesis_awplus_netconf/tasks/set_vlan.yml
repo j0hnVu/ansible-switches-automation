@@ -1,0 +1,13 @@
+- name: set vlans
+  alliedtelesis.awplus.awplus_vlans:
+    config: "{{ vlans }}"
+    state: merged
+  when: vlans is defined
+  notify: "save config alliedtelesis"
+
+- name: del vlans
+  alliedtelesis.awplus.awplus_vlans:
+    config: "{{ del_vlans }}"
+    state: deleted
+  when: del_vlans is defined
+  notify: "save config alliedtelesis"

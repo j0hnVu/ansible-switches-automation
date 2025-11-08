@@ -1,0 +1,5 @@
+- name: save config alliedtelesis
+  listen: "save config alliedtelesis"
+  alliedtelesis.awplus.awplus_command:
+    commands:
+      - "write memory"

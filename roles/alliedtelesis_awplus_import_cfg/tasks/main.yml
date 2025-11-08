@@ -1,0 +1,4 @@
+---
+# import_config.yml
+- name: import config from file 
+  include_tasks: import_config.yml

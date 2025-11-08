@@ -1,0 +1,19 @@
+---
+- name: Get Allied Telesis facts
+  gather_facts: false
+  hosts: alliedtelesis
+  tasks:
+    - name: Ensure destination directory exists on the control node
+      ansible.builtin.file:
+        path: "configs/{{ inventory_hostname }}"
+        state: directory
+        mode: '0755'
+      delegate_to: localhost
+
+
+    - name: Ensure the configuration file exists on the control node
+      ansible.builtin.file:
+        path: "configs/{{ inventory_hostname }}/config"
+        state: touch
+        mode: '0644'
+      delegate_to: localhost

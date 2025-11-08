@@ -1,0 +1,18 @@
+- name: Gather legacy and resource facts
+  cisco.ios.ios_facts:
+    gather_subset: all
+    gather_network_resources: all
+
+- name: Ensure destination directory exists on the control node
+  ansible.builtin.file:
+    path: "./backup_configs/{{ inventory_hostname }}/facts/"
+    state: directory
+    mode: '0755'
+  delegate_to: localhost
+  run_once: true
+
+- name: Save facts to a JSON file on the Ansible control node
+  ansible.builtin.copy:
+    content: "{{ ansible_facts | to_nice_yaml }}"
+    dest: "./backup_configs/{{ inventory_hostname }}/facts/facts_{{ now(fmt='%Y-%m-%d_%H-%M-%S') }}.yml"
+  delegate_to: localhost

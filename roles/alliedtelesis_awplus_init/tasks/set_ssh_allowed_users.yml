@@ -1,0 +1,15 @@
+- name: ssh allow users
+  alliedtelesis.awplus.awplus_config:
+    lines:
+      - "ssh server allow-users {{ item }}"
+  loop: "{{ssh_allowed_users}}"
+  when: ssh_allowed_users is defined
+  notify: "save config alliedtelesis"
+
+- name: ssh disallow users
+  alliedtelesis.awplus.awplus_config:
+    lines:
+      - "no ssh server allow-users {{ item }}"
+  loop: "{{del_users}}"
+  when: del_users is defined
+  notify: "save config alliedtelesis"

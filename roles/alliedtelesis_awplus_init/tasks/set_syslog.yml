@@ -1,0 +1,11 @@
+- name: Configure Syslog settings
+  alliedtelesis.awplus.awplus_logging:
+    config:
+      - host: "{{ syslog_hosts }}"
+      - buffered:
+          level: warning
+      - console:
+          level: errors
+    state: merged
+  when: syslog_hosts is defined and syslog_hosts | length > 0
+  notify: "save config alliedtelesis"

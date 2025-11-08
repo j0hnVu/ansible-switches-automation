@@ -1,0 +1,49 @@
+############## role_init ##############
+
+motd_banner: "******* AUTHORIZED ACCESS ONLY - All activity is logged *******"
+
+snmp: true
+
+nameservers:
+  - 1.1.1.1
+  - 1.0.0.1
+
+ntp_servers:
+  - 0.vn.pool.ntp.org
+  - 1.vn.pool.ntp.org
+
+timezone: HCM plus 7
+
+enabled_service:
+  - ssh
+  - password-encryption
+  - http
+
+disabled_service:
+  - telnet
+  - dhcp-server
+
+#jumboframe: true
+
+#users:
+#  - name: testuser
+#    configured_password: testing@lmao
+#    privilege: 15
+
+#del_users:
+#  - testuser
+
+#ssh_allowed_users:
+#  - testuser
+
+#syslog_hosts:
+
+#vlans:
+  #- vlan_id: 23
+    #name: SOME_VLAN_23
+  #- vlan_id: 24
+    #name: SOME_VLAN_24
+
+#del_vlans:
+#  - vlan_id: 23
+#  - vlan_id: 24

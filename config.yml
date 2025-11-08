@@ -1,0 +1,10 @@
+---
+- name: applyconfig to switch
+  hosts: alliedtelesis
+  gather_facts: false
+  become: true
+  become_method: enable
+  roles:
+    - role: alliedtelesis_awplus_import_cfg
+      vars:
+        config: "configs/{{ inventory_hostname }}/config"

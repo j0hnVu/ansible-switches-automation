@@ -1,0 +1,6 @@
+- name: Create timestamped backup of the running configuration
+  cisco.ios.ios_config:
+    backup: yes
+    backup_options:
+      dir_path: "./backup_configs/{{ inventory_hostname }}/"
+      filename: "config_{{ now(fmt='%Y-%m-%d_%H-%M-%S') }}"

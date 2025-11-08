@@ -1,0 +1,6 @@
+- name: set interfaces
+  alliedtelesis.awplus.awplus_interfaces:
+    config: "{{ interfaces }}" 
+    state: merged
+  when: interfaces is defined
+  notify: "save config alliedtelesis"

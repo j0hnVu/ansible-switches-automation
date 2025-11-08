@@ -1,0 +1,17 @@
+- name: exec banner
+  cisco.ios.ios_banner:
+    config:
+      - banner: exec
+        text: "{{ exec_banner }}"
+    state: "{{ 'deleted' if exec_banner | length == 0 else 'merged' }}"
+  when: exec_banner is defined
+  notify: "save config alliedtelesis"
+
+- name: motd banner
+  cisco.ios.ios_banner:
+    config:
+      - banner: motd
+        text: "{{ motd_banner }}"
+    state: "{{ 'deleted' if motd_banner | length == 0 else 'merged' }}"
+  when: motd_banner is defined
+  notify: "save config alliedtelesis"

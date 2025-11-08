@@ -1,0 +1,14 @@
+- name: set user
+  alliedtelesis.awplus.awplus_user:
+    config: "{{ users }}"
+    state: merged
+  when: users is defined
+  notify: "save config alliedtelesis"
+
+- name: delete user
+  alliedtelesis.awplus.awplus_config:
+    lines:
+      - "no username {{ item }}"
+  loop: "{{ del_users }}"
+  when: del_users is defined
+  notify: "save config alliedtelesis"

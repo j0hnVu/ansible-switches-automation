@@ -1,0 +1,20 @@
+# set_vlan.yml
+- name: Set vlan
+  include_tasks: set_vlan.yml
+
+# set interfaces
+- name: Set interface
+  include_tasks: set_interface.yml
+- name: Set l2 interface
+  include_tasks: set_l2_interface.yml
+- name: Set l3 interface
+  include_tasks: set_l3_interface.yml
+
+# set lacp
+- name: set lacp
+  include_tasks: set_lacp.yml
+
+# alliedtelesis_awplus_get_facts role
+- name: get current run conf & facts
+  include_role:
+    name: alliedtelesis_awplus_get_facts

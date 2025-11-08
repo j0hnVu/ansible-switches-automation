@@ -1,0 +1,15 @@
+- name: Enable service
+  alliedtelesis.awplus.awplus_config:
+    lines:
+      - "service {{ item }}"
+  loop: "{{ enabled_service }}"
+  when: enabled_service is defined and enabled_service | length > 0
+  notify: "save config alliedtelesis"
+
+- name: Disable service
+  alliedtelesis.awplus.awplus_config:
+    lines:
+      - "no service {{ item }}"
+  loop: "{{disabled_service}}"
+  when: disabled_service is defined and disabled_service | length > 0
+  notify: "save config alliedtelesis"

@@ -1,0 +1,13 @@
+- name: set jumbo frame
+  alliedtelesis.awplus.awplus_config:
+    lines:
+      - "platform jumboframe"
+  when: jumboframe is defined and jumboframe == true
+  notify: "save config alliedtelesis"
+
+- name: disable jumbo frame
+  alliedtelesis.awplus.awplus_config:
+    lines:
+      - "no platform jumboframe"
+  when: jumboframe is defined and jumboframe == false
+  notify: "save config alliedtelesis"
